@@ -32,7 +32,7 @@ echo -e "${PATH}"
 function start(){
   pull
   build
-  find_pind
+  find_pid
   run
 }
 
@@ -56,7 +56,7 @@ function build() {
 function find_pid() {
   PID = $(pgrep -f ${JAR_NAME})
 
-  if [[e -z "${PID}" ]]
+  if [[ -z "${PID}" ]]
   then
     echo -e ""
     echo -e ">> process not found 🏃♂️ "
