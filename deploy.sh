@@ -73,10 +73,9 @@ function find_pid() {
   then
     echo -e ""
     echo -e ">> process not found 🏃♂️ "
-    exit
+  else
+    kill_pid
   fi
-
-  kill_pid
 }
 
 ## 프로세스를 종료하는 명령어
