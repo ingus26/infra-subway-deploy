@@ -66,17 +66,10 @@ function find_pid() {
     echo -e ">> process not found 🏃♂️ "
   else
     echo -e ""
-    echo -e ">> process found ${PID} 🏃♂️ "
-    kill_pid
-  fi
-}
-
-## 프로세스를 종료하는 명령어
-function kill_pid(){
-    echo -e ""
     echo -e ">> kill pid -9 ${PID} 🏃♂️ "
     kill -9 ${PID}
     sleep 5
+  fi
 }
 
 ## 실행하는 명령어
