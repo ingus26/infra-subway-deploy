@@ -30,17 +30,30 @@ echo -e "${PATH}"
  fi
 
 function start(){
+  check_df
   pull
   build
   find_pid
   run
 }
 
+## github branch 변경 확인
+function check_df() {
+  git fetch
+  master=$(git rev-parse $BRANCH)
+  remote=$(git rev-parse origin $BRANCH)
+
+  if [[ $master == $remote ]]; then
+    echo -e "[$(date)] Nothing to do!!! 😫"
+    exit 0
+  fi
+}
+
 ## 저장소 pull
 function pull() {
   echo -e ""
   echo -e ">> Pull Request ${BRANCH}🏃♂️ "
-  git pull origin ${BRANCH}
+  git pull ${BRANCH}
 }
 
 ## gradle build
@@ -60,7 +73,7 @@ function find_pid() {
   then
     echo -e ""
     echo -e ">> process not found 🏃♂️ "
-    exit 0
+    exit
   fi
 
   kill_pid
@@ -78,7 +91,11 @@ function kill_pid(){
 function run(){
     echo -e ""
     echo -e ">> run jar -9 ${JAR_NAME} 🏃♂️ "
-    mkdir logs
+
+    if [ ! -f "./logs" ]; then
+      mkdir logs
+    fi
+
     nohup java -jar -Dspring.profiles.active=${PROFILE} ./build/libs/${JAR_NAME} > ./logs/nohup.out 2>&1 &
 }
 
