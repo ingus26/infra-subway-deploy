@@ -77,8 +77,8 @@ function run(){
     echo -e ""
     echo -e ">> run jar -9 ${JAR_NAME} 🏃♂️ "
 
-    if [[ -z "./logs" ]]; then
-      mkdir logs
+    if [[ -d "logs" ]]; then
+      mkdir "logs"
     fi
 
     nohup java -jar -Dspring.profiles.active=${PROFILE} ./build/libs/${JAR_NAME} > ./logs/nohup.out 2>&1 &
