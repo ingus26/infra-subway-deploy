@@ -77,7 +77,7 @@ function run(){
     echo -e ""
     echo -e ">> run jar -9 ${JAR_NAME} 🏃♂️ "
 
-    if [[ -d "logs" ]]; then
+    if [[ -d "./logs" ]]; then
       mkdir "logs"
     fi
 
