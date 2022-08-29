@@ -30,11 +30,10 @@ echo -e "${PATH}"
  fi
 
 function start(){
-  check_df
-  pull
-  build
-  find_pid
-  run
+  check_df;
+  pull;
+  build;
+  find_pid;
 }
 
 ## github branch 변경 확인
@@ -67,19 +66,18 @@ function build() {
 
 ## 프로세스 pid를 찾는 명령어
 function find_pid() {
-  # shellcheck disable=SC2086
-  # shellcheck disable=SC1068
-  PID = $(pgrep -f ${JAR_NAME})
+  PID=$(pgrep -f "${JAR_NAME}")
 
   if [[ -z "${PID}" ]]
   then
     echo -e ""
     echo -e ">> process not found 🏃♂️ "
-    exit
+    run;
   else
     echo -e ""
     echo -e ">> process found ${PID} 🏃♂️ "
     kill_pid
+    run;
   fi
 }
 
