@@ -90,6 +90,7 @@ function run(){
 
 function proxy(){
   sudo systemlctl stop nginx
+  docker stop $(docker ps -a -q)
   docker run -d -p 80:80 -p 443:43 nextstep/reverse-proxy:0.0.2
 }
 
