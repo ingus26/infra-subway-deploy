@@ -67,6 +67,8 @@ function build() {
 
 ## 프로세스 pid를 찾는 명령어
 function find_pid() {
+  # shellcheck disable=SC2086
+  # shellcheck disable=SC1068
   PID = $(pgrep -f ${JAR_NAME})
 
   if [[ -z "${PID}" ]]
@@ -74,6 +76,8 @@ function find_pid() {
     echo -e ""
     echo -e ">> process not found 🏃♂️ "
   else
+    echo -e ""
+    echo -e ">> process found ${PID} 🏃♂️ "
     kill_pid
   fi
 }
