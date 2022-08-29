@@ -68,8 +68,7 @@ function build() {
 function find_pid() {
   PID=$(pgrep ${JAR_NAME})
 
-  if [[ -z "${PID}" ]]
-  then
+  if [[ -z "${PID}" ]]; then
     echo -e ""
     echo -e ">> process not found 🏃♂️ "
     run;
@@ -94,8 +93,7 @@ function run(){
     echo -e ""
     echo -e ">> run jar -9 ${JAR_NAME} 🏃♂️ "
 
-    if [[ -z "./logs" ]]
-    then
+    if [[ -z "./logs" ]]; then
       mkdir logs
     fi
 
