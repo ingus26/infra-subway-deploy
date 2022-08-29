@@ -29,13 +29,6 @@ echo -e "${PATH}"
     exit
  fi
 
-function start(){
-  check_df;
-  pull;
-  build;
-  find_pid;
-}
-
 ## github branch 변경 확인
 function check_df() {
   git fetch
@@ -71,12 +64,10 @@ function find_pid() {
   if [[ -z "${PID}" ]]; then
     echo -e ""
     echo -e ">> process not found 🏃♂️ "
-    run;
   else
     echo -e ""
     echo -e ">> process found ${PID} 🏃♂️ "
     kill_pid
-    run;
   fi
 }
 
@@ -100,4 +91,8 @@ function run(){
     nohup java -jar -Dspring.profiles.active=${PROFILE} ./build/libs/${JAR_NAME} > ./logs/nohup.out 2>&1 &
 }
 
-start
+check_df
+pull
+build
+find_pid
+run
