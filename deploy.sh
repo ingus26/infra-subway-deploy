@@ -75,6 +75,7 @@ function find_pid() {
   then
     echo -e ""
     echo -e ">> process not found 🏃♂️ "
+    exit
   else
     echo -e ""
     echo -e ">> process found ${PID} 🏃♂️ "
@@ -95,7 +96,8 @@ function run(){
     echo -e ""
     echo -e ">> run jar -9 ${JAR_NAME} 🏃♂️ "
 
-    if [ ! -f "./logs" ]; then
+    if [[ ! -f "logs" ]]
+    then
       mkdir logs
     fi
 
