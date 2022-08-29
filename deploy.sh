@@ -66,7 +66,7 @@ function build() {
 
 ## 프로세스 pid를 찾는 명령어
 function find_pid() {
-  PID=$(pgrep ${JAR_NAME})
+  PID=$(lsof -t ${JAR_NAME})
 
   if [[ -z "${PID}" ]]; then
     echo -e ""
