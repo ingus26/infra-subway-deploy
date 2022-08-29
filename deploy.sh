@@ -83,6 +83,8 @@ function run(){
       mkdir "logs"
     fi
 
+    rm -rf "./logs/nohup.out"
+
     nohup java -jar -Dspring.profiles.active=${PROFILE} ./build/libs/${JAR_NAME} > ./logs/nohup.out 2>&1 &
 }
 
