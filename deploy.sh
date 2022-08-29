@@ -88,8 +88,14 @@ function run(){
     nohup java -jar -Dspring.profiles.active=${PROFILE} ./build/libs/${JAR_NAME} > ./logs/nohup.out 2>&1 &
 }
 
+function proxy(){
+  sudo systemlctl stop nginx
+  docker run -d -p 80:80 -p 443:43 nextstep/reverse-proxy:0.0.2
+}
+
 check_df
 pull
 build
 find_pid
+proxy
 run
